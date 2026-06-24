@@ -1,0 +1,22 @@
+server:
+  port: 8082
+spring:
+  datasource:
+    url: ${ORDER_DB_URL:jdbc:postgresql://orders-db:5432/orders}
+    username: ${ORDER_DB_USERNAME:orders}
+    password: ${ORDER_DB_PASSWORD:orders}
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:kafka:9092}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    template:
+      observation-enabled: true
+  flyway:
+    enabled: true
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://eureka-server:8761/eureka}
+app:
+  timeout-ms: ${ORDER_TIMEOUT_MS:3000}

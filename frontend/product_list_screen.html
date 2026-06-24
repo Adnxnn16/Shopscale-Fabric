@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ShopScale Fabric | Premium Industrial Textiles</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/static/Geist-Variable.css" rel="stylesheet"/>
+<link href="https://rsms.me/inter/inter.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#93000a",
+                        "surface-dim": "#071421",
+                        "on-secondary-fixed-variant": "#7d2d09",
+                        "error": "#ffb4ab",
+                        "inverse-surface": "#d7e4f6",
+                        "on-tertiary-fixed-variant": "#004e60",
+                        "surface-container-lowest": "#030f1c",
+                        "surface-bright": "#2e3a49",
+                        "surface-variant": "#293644",
+                        "success": "#10B981",
+                        "text-muted": "#94A3B8",
+                        "on-tertiary": "#003543",
+                        "on-background": "#d7e4f6",
+                        "surface-container-low": "#101c2a",
+                        "text-main": "#F8FAFC",
+                        "tertiary-fixed-dim": "#59d5fb",
+                        "warning": "#F59E0B",
+                        "surface-tint": "#ffb59d",
+                        "on-primary-container": "#5f1900",
+                        "primary": "#ffb59d",
+                        "on-error": "#690005",
+                        "outline-variant": "#594139",
+                        "surface-container-highest": "#293644",
+                        "surface-container": "#14212e",
+                        "background": "#071421",
+                        "outline": "#a98a80",
+                        "inverse-on-surface": "#253140",
+                        "secondary-fixed-dim": "#ffb59b",
+                        "on-surface": "#d7e4f6",
+                        "primary-fixed": "#ffdbd0",
+                        "inverse-primary": "#ab3500",
+                        "tertiary-container": "#00a7cb",
+                        "primary-container": "#ff6b35",
+                        "on-secondary": "#5b1a00",
+                        "surface": "#0F1D2E",
+                        "tertiary-fixed": "#b5ebff",
+                        "on-surface-variant": "#e1bfb5",
+                        "on-primary": "#5d1900",
+                        "on-primary-fixed-variant": "#832600",
+                        "on-tertiary-fixed": "#001f28",
+                        "on-primary-fixed": "#390c00",
+                        "on-error-container": "#ffdad6",
+                        "tertiary": "#59d5fb",
+                        "surface-container-high": "#1f2b39",
+                        "secondary": "#ffb59b",
+                        "secondary-container": "#802f0c",
+                        "primary-fixed-dim": "#ffb59d",
+                        "on-tertiary-container": "#003744",
+                        "on-secondary-container": "#ffa07e",
+                        "secondary-fixed": "#ffdbcf",
+                        "on-secondary-fixed": "#380d00",
+                        "border-subtle": "#1E293B"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "max-width": "1440px",
+                        "margin-desktop": "64px",
+                        "gutter": "24px",
+                        "unit": "4px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "display-xl": ["Geist"],
+                        "headline-lg": ["Geist"],
+                        "mono-label": ["Geist"],
+                        "label-caps": ["Geist"],
+                        "body-sm": ["Inter"],
+                        "headline-lg-mobile": ["Geist"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-xl": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "mono-label": ["13px", {"lineHeight": "18px", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "letterSpacing": "0.00em", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0.00em", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        @keyframes charReveal {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .reveal-char { display: inline-block; animation: charReveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards; opacity: 0; }
+        
+        .fade-out { opacity: 0; transition: opacity 1.5s ease-out; pointer-events: none; }
+        .stagger-in { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1); }
+        .stagger-in.visible { opacity: 1; transform: translateY(0); }
+
+        .product-flight {
+            position: fixed;
+            z-index: 100;
+            pointer-events: none;
+            transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .glass-card {
+            background: rgba(15, 29, 46, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-gradient {
+            background: radial-gradient(circle at center, rgba(255, 181, 157, 0.05) 0%, transparent 70%);
+        }
+        
+        body { background-color: #071421; color: #d7e4f6; overflow-x: hidden; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="font-body-md selection:bg-primary/30">
+<!-- Intro Stage -->
+<div class="fixed inset-0 z-[100] bg-surface-dim flex flex-col items-center justify-center transition-opacity duration-1000" id="intro-stage">
+<div class="w-64 h-64 mb-8">
+<!-- STITCH_SVG_START:ANIMATION_1 class="w-full h-full" --><div class="w-full h-full" id="animated-svg-ANIMATION_1" style="display:block;"><svg viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<lineargradient id="logo-grad" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#FF6B35;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#FF8F65;stop-opacity:1"></stop>
+</lineargradient>
+</defs>
+<path d="M20,50 L50,20 L80,50 L50,80 Z" fill="none" stroke="url(#logo-grad)" stroke-width="2">
+<animate attributename="stroke-dasharray" dur="2s" fill="freeze" from="0,240" to="240,0"></animate>
+</path>
+<path d="M35,50 L50,35 L65,50 L50,65 Z" fill="url(#logo-grad)">
+<animate attributename="opacity" begin="1s" dur="1s" fill="freeze" from="0" to="1"></animate>
+</path>
+</svg></div><!-- STITCH_SVG_END:ANIMATION_1 -->
+</div>
+<h1 class="font-display-xl text-display-xl text-primary tracking-[0.2em]" id="intro-text">
+<!-- JS populated -->
+</h1>
+</div>
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md dark:bg-surface/80 border-b border-border-subtle/10 h-20 transition-transform duration-500 -translate-y-full" id="main-nav">
+<div class="flex justify-between items-center max-w-max-width mx-auto px-margin-desktop h-full">
+<div class="font-display-xl text-headline-lg font-bold tracking-tighter text-on-surface">ShopScale Fabric</div>
+<nav class="hidden md:flex items-center space-x-8 font-mono-label text-mono-label">
+<a class="text-primary font-semibold border-b-2 border-primary pb-1" href="#">Collections</a>
+<a class="text-text-muted hover:text-on-surface transition-colors duration-300" href="#">New Arrivals</a>
+<a class="text-text-muted hover:text-on-surface transition-colors duration-300" href="#">Archive</a>
+<a class="text-text-muted hover:text-on-surface transition-colors duration-300" href="#">About</a>
+</nav>
+<div class="flex items-center space-x-6">
+<button class="text-primary hover:bg-surface-container-high/50 p-2 transition-all duration-400 ease-out">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+<button class="text-primary hover:bg-surface-container-high/50 p-2 transition-all duration-400 ease-out relative" id="cart-btn">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+<span class="absolute -top-1 -right-1 bg-primary-container text-on-primary-container text-[10px] w-4 h-4 flex items-center justify-center rounded-full font-bold hidden" id="cart-count">0</span>
+</button>
+</div>
+</div>
+</header>
+<main class="relative pt-20">
+<!-- Hero Section -->
+<section class="relative min-h-[921px] flex items-center justify-center overflow-hidden px-margin-mobile md:px-margin-desktop">
+<div class="hero-gradient absolute inset-0 pointer-events-none"></div>
+<div class="relative z-10 text-center max-w-4xl">
+<div class="overflow-hidden mb-4">
+<h2 class="font-display-xl text-display-xl-mobile md:text-display-xl tracking-tight leading-none reveal-line" style="--d: 0.1s">
+                        Precision Engineered<br/>
+<span class="text-primary">Textile Architecture.</span>
+</h2>
+</div>
+<p class="font-body-md text-text-muted max-w-xl mx-auto mb-12 opacity-0 fade-up" style="--d: 0.6s">
+                    ShopScale provides high-performance fabrics designed for industrial durability with a luxury hand-feel. Scalable solutions for modern creators.
+                </p>
+<div class="flex flex-col md:flex-row gap-6 justify-center opacity-0 fade-up" style="--d: 0.8s">
+<button class="bg-primary-container text-on-primary-container px-8 py-4 font-label-caps text-label-caps hover:scale-105 transition-transform active:scale-95">
+                        EXPLORE COLLECTIONS
+                    </button>
+<button class="border border-outline text-on-surface px-8 py-4 font-label-caps text-label-caps hover:bg-surface-container-high transition-colors">
+                        VIEW ARCHIVE
+                    </button>
+</div>
+</div>
+<!-- Floating Magnetic Cards -->
+<div class="absolute inset-0 pointer-events-none hidden lg:block overflow-hidden">
+<div class="magnetic-item absolute top-1/4 left-[10%] w-48 h-64 glass-card p-4 rotate-[-6deg] transition-transform duration-500 ease-out" data-depth="0.2">
+<div class="w-full h-full bg-surface-container-highest overflow-hidden rounded">
+<img class="w-full h-full object-cover opacity-80" data-alt="A macro shot of a sophisticated dark gray technical fabric with a fine hexagonal weave pattern, illuminated by low-key studio lighting with amber highlights on the textures. The style is premium industrial minimalist, emphasizing the durability and precision of the textile engineering." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKqSLt8shWl7jAO4fDjXUq05QZ2SWQFnATjw20zrQJlDwi_h_esX4cXsTIT3MtdmKS9x9IUjtH1AbLgCsA8ugn6wTz217dusW6CkI2a0G70UWixmCa3eHZoEyzx8VLd_KfdQsVkxZTX2OcYoKJTcXY0lLoxIiuZYwEYz35C4PHXQvndY5kMOLZ9Pr-gisW43PY8jSMOd6Q9AbWSMRBGcqCAjUogcut7gtV6fodhZzGODu731ffIOF18kEXE3czPb2ZEuS8ybk2MEY"/>
+</div>
+</div>
+<div class="magnetic-item absolute bottom-1/4 right-[12%] w-56 h-72 glass-card p-4 rotate-[4deg] transition-transform duration-500 ease-out" data-depth="0.15">
+<div class="w-full h-full bg-surface-container-highest overflow-hidden rounded">
+<img class="w-full h-full object-cover opacity-80" data-alt="Close-up of a premium white architectural fabric with a crisp linear texture and subtle sheen. The background is a deep charcoal gray, creating a high-contrast sophisticated atmosphere. Lighting is soft and directional, highlighting the complex fibers and professional craftsmanship." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqSClDme9azha-Jr-c27WpvY4o-kPkwe4v49mJDBudzl1x1Uqyy9doaQJj8T8Z7eAq0-zD_Z6NEsr8UGXR4Q69-qylP6En_Zz9mdbwjVTPQ0qWId7Cphrj0ThyE1cOsbBoUZFkWxLWQgoMpUXJrQjBq5CGBxDMgn7RGVlzgW1AQIhWH0MzDEiRmNzHYgHi-01iM-xoxUnjUlsruDTxJNdJhSzWMziFeR92490J75Pbmu37vKk40b89tPgRzO1igphR8h-hAa1nlSA"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Product Grid Section -->
+<section class="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop py-24">
+<div class="flex justify-between items-end mb-16 stagger-in">
+<div>
+<h3 class="font-headline-lg text-headline-lg mb-2">Featured Series</h3>
+<p class="text-text-muted font-body-sm">Standardizing excellence across weave and weight.</p>
+</div>
+<a class="font-label-caps text-primary border-b border-primary hover:opacity-80 transition-opacity" href="#">BROWSE ALL</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="product-grid">
+<!-- Product Card 1 -->
+<div class="group product-card stagger-in flex flex-col bg-surface border border-border-subtle/20 overflow-hidden hover:border-primary/40 transition-colors duration-500">
+<div class="aspect-[4/5] overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A wide format shot of deep navy blue rolls of high-performance fabric stacked neatly in a modern industrial warehouse. The lighting is cold and atmospheric with blue and orange tonal shifts reflecting the premium dark minimalist aesthetic. The image conveys scale, order, and high-end manufacturing quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhfRV0xls80HNgINpLaMOH32Zq8Hn5qdRcm5r9GAJCTwgha3DvPrxXsbXmCZYS3KxhlrJNKKHRlMWdvN_H35edvnvKhtoTQhlEhYXGseB1kj6fEAvfHGnGK9A8fstSS44U2ooomQuP0UUQRC06JCeMWH5cULOyUOHpvoHdeAOWIM3lp8SD5EGWl-uN8EQ7XJImi8k9TdmT-U7oe6Q21Ig5Gc4EWw166_qPcqlAmV258kbKEt-e53EuJXEUcSTZaPIywZ3LGsDx20g"/>
+<div class="absolute inset-0 bg-background/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<button class="add-to-cart-trigger bg-primary text-on-primary font-label-caps text-label-caps py-3 px-6 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+                                ADD TO BAG
+                            </button>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-headline-lg text-body-md font-bold">V-200 Carbon Weave</h4>
+<span class="font-mono-label text-primary">$48.00/yd</span>
+</div>
+<p class="text-text-muted font-body-sm line-clamp-2">Ultra-durable ballistic nylon variant with reflective micro-threads for high-visibility applications.</p>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="group product-card stagger-in flex flex-col bg-surface border border-border-subtle/20 overflow-hidden hover:border-primary/40 transition-colors duration-500" style="transition-delay: 0.1s">
+<div class="aspect-[4/5] overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Close-up of a burnt orange technical canvas textile showing a complex rugged weave. The fabric is draped over a minimalist geometric sculpture, showcasing its structural rigidity. The lighting creates deep shadows and vibrant highlights, consistent with a high-performance luxury design language." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYuBBiqFQvbIAXpfxmq24wHCaepZk887ic1kvNrW03SfehgiuuttCJ6vICd3-yL_OoBfkbJEVWuCM6Fu5TyKyGs8Vl6AwCCAzfblwBhjSdPRC6PCWTfr139usi1v_FJgDHB_uQHJ8fULp0x8OUXry7aJsAnOVtFyhw34giui1sJHaA9gaKxj5sNtTXvLVdBxyMjMJa8SBAgWCqq5ASfFuNfCqD99QgImwDxigFCeAw5SXOrwdcta69DOVXxLqi9-S9i9z3y0Do8ss"/>
+<div class="absolute inset-0 bg-background/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<button class="add-to-cart-trigger bg-primary text-on-primary font-label-caps text-label-caps py-3 px-6 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+                                ADD TO BAG
+                            </button>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-headline-lg text-body-md font-bold">OX-9 Thermal Mesh</h4>
+<span class="font-mono-label text-primary">$62.00/yd</span>
+</div>
+<p class="text-text-muted font-body-sm line-clamp-2">Engineered thermal regulation mesh with moisture-wicking properties for performance activewear.</p>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="group product-card stagger-in flex flex-col bg-surface border border-border-subtle/20 overflow-hidden hover:border-primary/40 transition-colors duration-500" style="transition-delay: 0.2s">
+<div class="aspect-[4/5] overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Macro photography of a sleek black waterproof membrane fabric with water droplets beadling on the surface. The background is a dark minimalist void. The aesthetic is extremely high-end, focusing on technical specifications and the material's interaction with the elements through precise lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8jxDeaGh7fd8dPM5bBYqNzCg6BYLdcGKhbnDC-1jJTrAHxr7Vxwgmi6MzFaG-v7X9ZXBhJ3Vv-0_KGQWEeabc4MiGP1qnIFC2iupkMb2DhqPXyF-mujdOsYB5ApEuA8mZK7caoa1VYVeMFyPusy_5zhm_VnLn9is0uAN8ZQiedv7efIkynkA_sDQfxJ8fke3DWdW1TCNtNnMvB4GOo01tm3JzEaGr2cEEtzmzHQafrbOesCM-1b-Tz-Kn8t7r1ANMWkDKDdATalw"/>
+<div class="absolute inset-0 bg-background/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<button class="add-to-cart-trigger bg-primary text-on-primary font-label-caps text-label-caps py-3 px-6 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+                                ADD TO BAG
+                            </button>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-headline-lg text-body-md font-bold">HydraShield Pro</h4>
+<span class="font-mono-label text-primary">$75.00/yd</span>
+</div>
+<p class="text-text-muted font-body-sm line-clamp-2">3-layer waterproof membrane with unparalleled breathability and abrasion resistance ratings.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter / CTA -->
+<section class="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop py-24 stagger-in">
+<div class="relative bg-surface-container-low border border-border-subtle/10 p-12 md:p-24 text-center overflow-hidden">
+<div class="absolute inset-0 opacity-10 pointer-events-none">
+<div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(#ffb59d_1px,transparent_1px)] [background-size:20px_20px]"></div>
+</div>
+<div class="relative z-10 max-w-2xl mx-auto">
+<h3 class="font-display-xl text-headline-lg md:text-display-xl mb-6">Stay ahead of the curve.</h3>
+<p class="text-text-muted mb-10 font-body-md">Get early access to limited edition archive drops and technical fabric breakthroughs.</p>
+<form class="flex flex-col md:flex-row gap-4" onsubmit="event.preventDefault()">
+<input class="flex-1 bg-background border border-outline px-6 py-4 focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="Your corporate email" type="email"/>
+<button class="bg-primary text-on-primary px-12 py-4 font-label-caps text-label-caps hover:scale-105 active:scale-95 transition-transform">JOIN LIST</button>
+</form>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Shell -->
+<footer class="w-full mt-auto border-t border-border-subtle/10 bg-surface-container-lowest">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop py-12 max-w-max-width mx-auto">
+<div class="font-display-xl text-headline-lg-mobile text-primary mb-8 md:mb-0">ShopScale</div>
+<div class="flex flex-wrap justify-center gap-8 font-body-sm text-body-sm">
+<a class="text-text-muted hover:text-on-surface transition-colors" href="#">Privacy Policy</a>
+<a class="text-text-muted hover:text-on-surface transition-colors" href="#">Terms of Service</a>
+<a class="text-text-muted hover:text-on-surface transition-colors" href="#">Shipping</a>
+<a class="text-text-muted hover:text-on-surface transition-colors" href="#">Contact</a>
+</div>
+<div class="text-text-muted font-body-sm mt-8 md:mt-0">
+                © 2024 ShopScale Fabric. All Rights Reserved.
+            </div>
+</div>
+</footer>
+<script>
+        // Intro Sequence
+        const introText = "SHOPSCALE FABRIC";
+        const introContainer = document.getElementById('intro-text');
+        const introStage = document.getElementById('intro-stage');
+        const mainNav = document.getElementById('main-nav');
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Populate characters
+            introText.split('').forEach((char, i) => {
+                const span = document.createElement('span');
+                span.textContent = char === ' ' ? '\u00A0' : char;
+                span.className = 'reveal-char';
+                span.style.animationDelay = `${0.5 + i * 0.05}s`;
+                introContainer.appendChild(span);
+            });
+
+            // Sequence out
+            setTimeout(() => {
+                introStage.classList.add('fade-out');
+                mainNav.classList.remove('-translate-y-full');
+                
+                // Show hero elements
+                document.querySelectorAll('.reveal-line').forEach(el => {
+                    el.classList.add('visible');
+                    el.style.opacity = '1';
+                });
+                document.querySelectorAll('.fade-up').forEach(el => {
+                    el.style.transition = 'all 1s cubic-bezier(0.22, 1, 0.36, 1)';
+                    el.style.transitionDelay = el.style.getPropertyValue('--d');
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                });
+            }, 3500);
+
+            // Clean up intro stage
+            setTimeout(() => {
+                introStage.remove();
+            }, 5000);
+        });
+
+        // Magnetic Hover Effect
+        const magneticItems = document.querySelectorAll('.magnetic-item');
+        document.addEventListener('mousemove', (e) => {
+            const { clientX, clientY } = e;
+            
+            magneticItems.forEach(item => {
+                const rect = item.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                
+                const distanceX = clientX - centerX;
+                const distanceY = clientY - centerY;
+                const distance = Math.sqrt(distanceX**2 + distanceY**2);
+                
+                if (distance < 150) {
+                    const depth = parseFloat(item.dataset.depth || 0.1);
+                    const moveX = distanceX * depth;
+                    const moveY = distanceY * depth;
+                    item.style.transform = `translate(${moveX}px, ${moveY}px) rotate(${item.classList.contains('rotate-[-6deg]') ? -6 : 4}deg) scale(1.05)`;
+                } else {
+                    item.style.transform = `translate(0, 0) rotate(${item.classList.contains('rotate-[-6deg]') ? -6 : 4}deg) scale(1)`;
+                }
+            });
+        });
+
+        // Intersection Observer for staggered entrances
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.stagger-in').forEach(el => observer.observe(el));
+
+        // Add to Cart Product Flight Animation
+        const cartBtn = document.getElementById('cart-btn');
+        const cartCount = document.getElementById('cart-count');
+        let count = 0;
+
+        document.querySelectorAll('.add-to-cart-trigger').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const productImg = btn.closest('.product-card').querySelector('img');
+                const btnRect = btn.getBoundingClientRect();
+                const cartRect = cartBtn.getBoundingClientRect();
+
+                // Create flight element
+                const flightEl = document.createElement('div');
+                flightEl.className = 'product-flight w-12 h-12 bg-primary rounded-full overflow-hidden';
+                flightEl.style.left = `${btnRect.left + btnRect.width/2 - 24}px`;
+                flightEl.style.top = `${btnRect.top + btnRect.height/2 - 24}px`;
+                
+                const flightImg = productImg.cloneNode();
+                flightImg.style.width = '100%';
+                flightImg.style.height = '100%';
+                flightImg.style.objectFit = 'cover';
+                flightEl.appendChild(flightImg);
+                
+                document.body.appendChild(flightEl);
+
+                // Animate to cart
+                requestAnimationFrame(() => {
+                    flightEl.style.transform = `translate(${cartRect.left - btnRect.left}px, ${cartRect.top - btnRect.top}px) scale(0.1)`;
+                    flightEl.style.opacity = '0.5';
+                });
+
+                setTimeout(() => {
+                    flightEl.remove();
+                    count++;
+                    cartCount.textContent = count;
+                    cartCount.classList.remove('hidden');
+                    
+                    // Button feedback
+                    cartBtn.style.transform = 'scale(1.3)';
+                    setTimeout(() => cartBtn.style.transform = 'scale(1)', 200);
+                }, 800);
+            });
+        });
+    </script>
+</body></html>

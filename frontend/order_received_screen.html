@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed": "#390c00",
+                    "tertiary-fixed-dim": "#59d5fb",
+                    "outline": "#a98a80",
+                    "on-error": "#690005",
+                    "on-tertiary-container": "#003744",
+                    "primary": "#ffb59d",
+                    "secondary-fixed-dim": "#ffb59b",
+                    "on-background": "#d7e4f6",
+                    "surface": "#0F1D2E",
+                    "primary-fixed": "#ffdbd0",
+                    "on-secondary-container": "#ffa07e",
+                    "secondary-fixed": "#ffdbcf",
+                    "border-subtle": "#1E293B",
+                    "secondary": "#ffb59b",
+                    "on-surface": "#d7e4f6",
+                    "on-primary": "#5d1900",
+                    "outline-variant": "#594139",
+                    "tertiary": "#59d5fb",
+                    "primary-container": "#ff6b35",
+                    "tertiary-container": "#00a7cb",
+                    "warning": "#F59E0B",
+                    "tertiary-fixed": "#b5ebff",
+                    "inverse-surface": "#d7e4f6",
+                    "surface-container": "#14212e",
+                    "inverse-primary": "#ab3500",
+                    "text-muted": "#94A3B8",
+                    "on-tertiary-fixed-variant": "#004e60",
+                    "surface-variant": "#293644",
+                    "surface-tint": "#ffb59d",
+                    "surface-container-low": "#101c2a",
+                    "primary-fixed-dim": "#ffb59d",
+                    "on-tertiary-fixed": "#001f28",
+                    "secondary-container": "#802f0c",
+                    "text-main": "#F8FAFC",
+                    "on-secondary-fixed-variant": "#7d2d09",
+                    "surface-container-highest": "#293644",
+                    "on-primary-container": "#5f1900",
+                    "error": "#ffb4ab",
+                    "surface-dim": "#071421",
+                    "on-error-container": "#ffdad6",
+                    "surface-container-high": "#1f2b39",
+                    "success": "#10B981",
+                    "on-surface-variant": "#e1bfb5",
+                    "surface-container-lowest": "#030f1c",
+                    "error-container": "#93000a",
+                    "on-secondary": "#5b1a00",
+                    "on-secondary-fixed": "#380d00",
+                    "inverse-on-surface": "#253140",
+                    "on-tertiary": "#003543",
+                    "surface-bright": "#2e3a49",
+                    "background": "#071421",
+                    "on-primary-fixed-variant": "#832600"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-desktop": "64px",
+                    "gutter": "24px",
+                    "max-width": "1440px",
+                    "margin-mobile": "16px",
+                    "unit": "4px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Geist"],
+                    "display-xl": ["Geist"],
+                    "mono-label": ["Geist"],
+                    "label-caps": ["Geist"],
+                    "body-md": ["Inter"],
+                    "headline-lg-mobile": ["Geist"],
+                    "body-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "display-xl": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                    "mono-label": ["13px", {"lineHeight": "18px", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #071421;
+            color: #d7e4f6;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .backdrop-blur-luxury {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .check-container {
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .check-svg {
+            width: 100px;
+            height: 100px;
+            stroke-dasharray: 480;
+            stroke-dashoffset: 480;
+            animation: draw-circle 1s ease-out forwards;
+        }
+
+        .check-mark {
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+            animation: draw-check 0.5s 0.8s ease-out forwards;
+        }
+
+        .halo {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border: 2px solid #ffb59d;
+            border-radius: 50%;
+            opacity: 0;
+            transform: scale(1);
+        }
+
+        .halo-animate {
+            animation: halo-expand 1.2s 1.2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+        }
+
+        @keyframes draw-circle {
+            to { stroke-dashoffset: 0; }
+        }
+
+        @keyframes draw-check {
+            to { stroke-dashoffset: 0; }
+        }
+
+        @keyframes halo-expand {
+            0% { transform: scale(1); opacity: 0.6; }
+            100% { transform: scale(2.5); opacity: 0; }
+        }
+
+        .particle {
+            position: absolute;
+            pointer-events: none;
+            border-radius: 50%;
+            z-index: 10;
+        }
+
+        @keyframes pulse-primary {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 181, 157, 0.4); }
+            50% { transform: scale(1.02); box-shadow: 0 0 20px 5px rgba(255, 181, 157, 0.2); }
+        }
+
+        .animate-pulse-custom {
+            animation: pulse-primary 3s infinite ease-in-out;
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s 1.5s forwards ease-out;
+        }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .order-card {
+            background-color: #0F1D2E;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md antialiased">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center h-16 px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto bg-background dark:bg-background border-b border-outline-variant">
+<div class="text-headline-lg font-headline-lg text-primary dark:text-primary tracking-tight">
+            ShopScale Fabric
+        </div>
+<div class="flex items-center gap-6">
+<button class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined">shopping_cart</span>
+</button>
+<button class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="min-h-screen pt-32 pb-24 px-margin-mobile md:px-margin-desktop flex flex-col items-center relative overflow-hidden">
+<!-- Background Decoration (Soft Glows) -->
+<div class="absolute top-1/4 -left-20 w-96 h-96 bg-primary/5 rounded-full blur-[100px]"></div>
+<div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-tertiary/5 rounded-full blur-[100px]"></div>
+<!-- Stage 1 & 2: Animated Success Header -->
+<div class="flex flex-col items-center mb-12">
+<div class="check-container mb-6">
+<div class="halo halo-animate"></div>
+<svg class="check-svg" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="none" r="45" stroke="#ffb59d" stroke-linecap="round" stroke-width="4"></circle>
+<path class="check-mark" d="M30 52 L45 67 L70 35" fill="none" stroke="#ffb59d" stroke-linecap="round" stroke-linejoin="round" stroke-width="6"></path>
+</svg>
+</div>
+<div class="text-center space-y-2 fade-in-up">
+<h1 class="font-display-xl text-headline-lg-mobile md:text-display-xl text-text-main">Order Confirmed</h1>
+<p class="text-on-surface-variant max-w-md mx-auto">We've received your order and our artisans are beginning their work on your selection.</p>
+</div>
+</div>
+<!-- Stage 4: Order Status Card -->
+<div class="order-card w-full max-w-2xl rounded-xl p-8 space-y-8 fade-in-up backdrop-blur-luxury">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+<div>
+<span class="font-label-caps text-label-caps text-on-surface-variant block mb-1">CURRENT STATUS</span>
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-warning"></span>
+<span class="font-mono-label text-mono-label text-warning">Order Received (Processing)</span>
+</div>
+</div>
+<div class="text-right md:text-right w-full md:w-auto">
+<span class="font-label-caps text-label-caps text-on-surface-variant block mb-1">ORDER NUMBER</span>
+<span class="font-mono-label text-mono-label text-text-main">#SSF-9284-01X</span>
+</div>
+</div>
+<!-- Detail Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 border-y border-outline-variant py-8">
+<div class="space-y-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant block">ORDER DATE</span>
+<p class="font-body-md text-body-md text-text-main">October 24, 2024</p>
+</div>
+<div class="space-y-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant block">EST. DELIVERY</span>
+<p class="font-body-md text-body-md text-text-main">Oct 28 - Nov 01</p>
+</div>
+<div class="space-y-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant block">INVENTORY</span>
+<p class="font-body-md text-body-md text-success flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+                        Allocated
+                    </p>
+</div>
+</div>
+<!-- CTAs -->
+<div class="flex flex-col sm:flex-row gap-4 pt-4">
+<button class="flex-1 bg-primary-container text-on-primary-container font-headline-lg text-body-md py-4 rounded-lg flex items-center justify-center gap-2 animate-pulse-custom transition-all hover:opacity-90 active:scale-[0.98]">
+<span class="material-symbols-outlined">local_shipping</span>
+                    Track Order
+                </button>
+<button class="flex-1 bg-transparent border border-outline-variant text-on-surface font-headline-lg text-body-md py-4 rounded-lg flex items-center justify-center gap-2 hover:bg-surface-variant transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined">shopping_bag</span>
+                    Continue Shopping
+                </button>
+</div>
+</div>
+<!-- Subtle Information -->
+<p class="mt-8 text-on-surface-variant font-body-sm text-body-sm fade-in-up text-center">
+            A confirmation email with tracking details has been sent to your registered address.
+        </p>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-gutter bg-surface-dim dark:bg-surface-dim border-t border-outline-variant">
+<div class="text-label-caps font-label-caps text-on-surface">
+            © 2024 ShopScale Fabric. All rights reserved.
+        </div>
+<nav class="flex gap-8">
+<a class="font-body-sm text-body-sm text-text-muted hover:text-on-surface transition-colors duration-200" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-text-muted hover:text-on-surface transition-colors duration-200" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-text-muted hover:text-on-surface transition-colors duration-200" href="#">Contact Support</a>
+</nav>
+</footer>
+<!-- Celebration Particles Logic -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.body;
+            const colors = ['#ffb59d', '#ffffff', '#ffdbd0', '#ffa07e'];
+            
+            // Create particles after a short delay (Stage 3)
+            setTimeout(() => {
+                for (let i = 0; i < 40; i++) {
+                    createParticle();
+                }
+            }, 1200);
+
+            function createParticle() {
+                const p = document.createElement('div');
+                const size = Math.random() * 4 + 2;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                p.className = 'particle';
+                p.style.width = `${size}px`;
+                p.style.height = `${size}px`;
+                p.style.backgroundColor = color;
+                p.style.boxShadow = `0 0 10px ${color}80`;
+                
+                // Start position (center of screen area)
+                const startX = window.innerWidth / 2;
+                const startY = window.innerHeight / 3;
+                
+                p.style.left = `${startX}px`;
+                p.style.top = `${startY}px`;
+                
+                container.appendChild(p);
+                
+                const angle = Math.random() * Math.PI * 2;
+                const velocity = Math.random() * 6 + 2;
+                const distance = Math.random() * 300 + 100;
+                
+                const destX = Math.cos(angle) * distance;
+                const destY = Math.sin(angle) * distance;
+                
+                const animation = p.animate([
+                    { 
+                        transform: 'translate(0, 0) scale(1)', 
+                        opacity: 1 
+                    },
+                    { 
+                        transform: `translate(${destX}px, ${destY}px) scale(0)`, 
+                        opacity: 0 
+                    }
+                ], {
+                    duration: Math.random() * 2000 + 1500,
+                    easing: 'cubic-bezier(0.1, 0.8, 0.3, 1)',
+                    fill: 'forwards'
+                });
+                
+                animation.onfinish = () => p.remove();
+            }
+        });
+    </script>
+</body></html>

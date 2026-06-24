@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: price-service
+  config:
+    import: "optional:configserver:${CONFIG_SERVER_URL:http://config-server:8888}"
+  lifecycle:
+    timeout-per-shutdown-phase: 20s
+  datasource:
+    url: ${PRICE_DB_URL:jdbc:postgresql://localhost:5435/price}
+    username: ${PRICE_DB_USERNAME:price}
+    password: ${PRICE_DB_PASSWORD:price}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+server:
+  shutdown: graceful
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  tracing:
+    sampling:
+      probability: 1.0
+  zipkin:
+    tracing:
+      endpoint: ${ZIPKIN_URL:http://zipkin:9411/api/v2/spans}
+
+logging:
+  pattern:
+    console: '{"ts":"%d{yyyy-MM-dd''T''HH:mm:ss.SSSXXX}","level":"%p","service":"price-service","trace":"%X{X-Correlation-Id:-}","msg":"%m"}%n'

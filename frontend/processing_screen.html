@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ShopScale Fabric - Order Processing</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@400;500;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glow-orange {
+            box-shadow: 0 0 20px 2px rgba(255, 181, 157, 0.2);
+        }
+        @keyframes pulse-line {
+            0% { stroke-dashoffset: 100; opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { stroke-dashoffset: 0; opacity: 0.3; }
+        }
+        .animate-pulse-line {
+            stroke-dasharray: 10;
+            animation: pulse-line 3s linear infinite;
+        }
+        .step-transition {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed": "#390c00",
+                        "tertiary-fixed-dim": "#59d5fb",
+                        "outline": "#a98a80",
+                        "on-error": "#690005",
+                        "on-tertiary-container": "#003744",
+                        "primary": "#ffb59d",
+                        "secondary-fixed-dim": "#ffb59b",
+                        "on-background": "#d7e4f6",
+                        "surface": "#0F1D2E",
+                        "primary-fixed": "#ffdbd0",
+                        "on-secondary-container": "#ffa07e",
+                        "secondary-fixed": "#ffdbcf",
+                        "border-subtle": "#1E293B",
+                        "secondary": "#ffb59b",
+                        "on-surface": "#d7e4f6",
+                        "on-primary": "#5d1900",
+                        "outline-variant": "#594139",
+                        "tertiary": "#59d5fb",
+                        "primary-container": "#ff6b35",
+                        "tertiary-container": "#00a7cb",
+                        "warning": "#F59E0B",
+                        "tertiary-fixed": "#b5ebff",
+                        "inverse-surface": "#d7e4f6",
+                        "surface-container": "#14212e",
+                        "inverse-primary": "#ab3500",
+                        "text-muted": "#94A3B8",
+                        "on-tertiary-fixed-variant": "#004e60",
+                        "surface-variant": "#293644",
+                        "surface-tint": "#ffb59d",
+                        "surface-container-low": "#101c2a",
+                        "primary-fixed-dim": "#ffb59d",
+                        "on-tertiary-fixed": "#001f28",
+                        "secondary-container": "#802f0c",
+                        "text-main": "#F8FAFC",
+                        "on-secondary-fixed-variant": "#7d2d09",
+                        "surface-container-highest": "#293644",
+                        "on-primary-container": "#5f1900",
+                        "error": "#ffb4ab",
+                        "surface-dim": "#071421",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-high": "#1f2b39",
+                        "success": "#10B981",
+                        "on-surface-variant": "#e1bfb5",
+                        "surface-container-lowest": "#030f1c",
+                        "error-container": "#93000a",
+                        "on-secondary": "#5b1a00",
+                        "on-secondary-fixed": "#380d00",
+                        "inverse-on-surface": "#253140",
+                        "on-tertiary": "#003543",
+                        "surface-bright": "#2e3a49",
+                        "background": "#071421",
+                        "on-primary-fixed-variant": "#832600"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "gutter": "24px",
+                        "max-width": "1440px",
+                        "margin-mobile": "16px",
+                        "unit": "4px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Geist"],
+                        "display-xl": ["Geist"],
+                        "mono-label": ["Geist"],
+                        "label-caps": ["Geist"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Geist"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "display-xl": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                        "mono-label": ["13px", {"lineHeight": "18px", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary selection:text-on-primary overflow-hidden">
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center h-16 px-margin-mobile md:px-margin-desktop border-b border-outline-variant bg-background/80 backdrop-blur-md">
+<div class="text-headline-lg font-headline-lg text-primary tracking-tight">ShopScale Fabric</div>
+<div class="flex items-center gap-6">
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-200 flex items-center">
+<span class="material-symbols-outlined">shopping_cart</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-200 flex items-center">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Background Shader -->
+<div class="fixed inset-0 z-0">
+<!-- STITCH_SHADER_START:ANIMATION_6 class="absolute inset-0 w-full h-full opacity-40" -->
+<div class="absolute inset-0 w-full h-full opacity-40" style="display:block;">
+<canvas id="shader-canvas-ANIMATION_6" style="display:block;width:100%;height:100%"></canvas>
+<script>
+(function() {
+  const canvas = document.getElementById('shader-canvas-ANIMATION_6');
+
+  // Sync the WebGL drawing-buffer size with the CSS-driven layout size.
+  // This fires on initial layout and whenever the element is resized.
+  function syncSize() {
+    const w = canvas.clientWidth  || 1280;
+    const h = canvas.clientHeight || 720;
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width  = w;
+      canvas.height = h;
+    }
+  }
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(syncSize).observe(canvas);
+  }
+  syncSize();
+
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) return;
+  const vs = `attribute vec2 a_position;
+varying vec2 v_texCoord;
+void main() {
+  v_texCoord = a_position * 0.5 + 0.5;
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}`;
+  const fs = `precision highp float;
+varying vec2 v_texCoord;
+uniform float u_time;
+uniform vec2 u_resolution;
+
+float line(vec2 p, vec2 a, vec2 b, float width) {
+    vec2 pa = p - a, ba = b - a;
+    float h = clamp(dot(pa, ba) / dot(ba, ba), 0.0, 1.0);
+    return smoothstep(width, 0.0, length(pa - ba * h));
+}
+
+void main() {
+    vec2 uv = v_texCoord;
+    vec2 p = uv * 2.0 - 1.0;
+    p.x *= u_resolution.x / u_resolution.y;
+
+    vec3 color = vec3(0.043, 0.114, 0.18); // #0B1D2E Surface
+
+    // Subtle grid
+    vec2 grid = fract(uv * 20.0 - u_time * 0.1);
+    float gridLine = smoothstep(0.02, 0.0, abs(grid.x - 0.5)) + smoothstep(0.02, 0.0, abs(grid.y - 0.5));
+    color += gridLine * 0.03;
+
+    // Infrastructure nodes and data flow
+    for(int i = 0; i < 5; i++) {
+        float t = u_time * 0.5 + float(i) * 1.5;
+        vec2 start = vec2(sin(t), cos(t * 0.7)) * 0.6;
+        vec2 end = vec2(sin(t + 2.0), cos((t + 2.0) * 0.8)) * 0.6;
+        
+        float l = line(p, start, end, 0.002);
+        color += l * vec3(1.0, 0.42, 0.21) * 0.2; // #FF6B35 accent
+        
+        // Flowing particles
+        float particle = line(p, mix(start, end, fract(t * 0.5)), mix(start, end, fract(t * 0.5) + 0.1), 0.01);
+        color += particle * vec3(1.0, 0.42, 0.21) * 0.5;
+    }
+
+    gl_FragColor = vec4(color, 1.0);
+}`;
+  function cs(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    return s;
+  }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+  gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+  const pos = gl.getAttribLocation(prog, 'a_position');
+  gl.enableVertexAttribArray(pos);
+  gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+  const uTime = gl.getUniformLocation(prog, 'u_time');
+  const uRes = gl.getUniformLocation(prog, 'u_resolution');
+  const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+  // u_mouse is in pixel coordinates matching u_resolution (ShaderToy convention).
+  // Shaders that need normalized coords should use: u_mouse / u_resolution.
+  let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+  window.addEventListener('mousemove', (event) => {
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width && rect.height) {
+      const nx = (event.clientX - rect.left) / rect.width;
+      const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+      mouse.x = nx * canvas.width;
+      mouse.y = ny * canvas.height;
+    }
+  });
+
+  function render(t) {
+    if (typeof ResizeObserver === 'undefined') syncSize();
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    if (uTime) gl.uniform1f(uTime, t * 0.001);
+    if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+    if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(render);
+  }
+  render(0);
+})();
+</script>
+</div>
+<!-- STITCH_SHADER_END:ANIMATION_6 -->
+</div>
+<!-- Main Content Canvas -->
+<main class="relative z-10 min-h-screen flex flex-col items-center justify-center px-margin-mobile">
+<!-- Header Section -->
+<div class="text-center mb-16 max-w-2xl">
+<h1 class="font-display-xl text-display-xl text-primary mb-4 animate-in fade-in slide-in-from-bottom-4 duration-1000">Processing Your Order</h1>
+<p class="font-body-md text-text-muted opacity-80">Your request is being routed through our marketplace infrastructure. Please do not refresh the page while we synchronize global inventory.</p>
+</div>
+<!-- Infrastructure Visualizer -->
+<div class="w-full max-w-4xl bg-surface/30 border border-white/5 backdrop-blur-xl rounded-xl p-12 relative overflow-hidden">
+<!-- Connection Lines (SVG) -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" preserveaspectratio="none">
+<path class="text-outline-variant/30" d="M 15% 50% L 38% 50%" fill="none" id="path-1" stroke="currentColor" stroke-width="2"></path>
+<path class="text-outline-variant/30" d="M 38% 50% L 62% 50%" fill="none" id="path-2" stroke="currentColor" stroke-width="2"></path>
+<path class="text-outline-variant/30" d="M 62% 50% L 85% 50%" fill="none" id="path-3" stroke="currentColor" stroke-width="2"></path>
+<!-- Active Animated Lines (Handled by JS) -->
+<path class="text-primary hidden animate-pulse-line" d="M 15% 50% L 38% 50%" fill="none" id="active-path-1" stroke="currentColor" stroke-width="2"></path>
+<path class="text-primary hidden animate-pulse-line" d="M 38% 50% L 62% 50%" fill="none" id="active-path-2" stroke="currentColor" stroke-width="2"></path>
+<path class="text-primary hidden animate-pulse-line" d="M 62% 50% L 85% 50%" fill="none" id="active-path-3" stroke="currentColor" stroke-width="2"></path>
+</svg>
+<!-- Steps Container -->
+<div class="flex justify-between items-center relative z-10 h-32">
+<!-- Step 1 -->
+<div class="flex flex-col items-center gap-4 w-1/4 opacity-40 step-transition transform scale-90" id="step-0">
+<div class="w-14 h-14 rounded-full border border-outline-variant flex items-center justify-center bg-surface-container shadow-inner">
+<span class="material-symbols-outlined text-on-surface-variant">add_shopping_cart</span>
+</div>
+<span class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant">Create Order</span>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center gap-4 w-1/4 opacity-40 step-transition transform scale-90" id="step-1">
+<div class="w-14 h-14 rounded-full border border-outline-variant flex items-center justify-center bg-surface-container">
+<span class="material-symbols-outlined text-on-surface-variant">hub</span>
+</div>
+<span class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant">Publish Event</span>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center gap-4 w-1/4 opacity-40 step-transition transform scale-90" id="step-2">
+<div class="w-14 h-14 rounded-full border border-outline-variant flex items-center justify-center bg-surface-container">
+<span class="material-symbols-outlined text-on-surface-variant">inventory_2</span>
+</div>
+<span class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant">Reserve Inventory</span>
+</div>
+<!-- Step 4 -->
+<div class="flex flex-col items-center gap-4 w-1/4 opacity-40 step-transition transform scale-90" id="step-3">
+<div class="w-14 h-14 rounded-full border border-outline-variant flex items-center justify-center bg-surface-container">
+<span class="material-symbols-outlined text-on-surface-variant">mark_email_read</span>
+</div>
+<span class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant">Send Confirmation</span>
+</div>
+</div>
+<!-- Log/Status Message -->
+<div class="mt-12 text-center">
+<div class="font-mono-label text-mono-label text-tertiary-fixed-dim uppercase tracking-tighter" id="status-text">
+                    Initializing Infrastructure...
+                </div>
+</div>
+</div>
+<!-- System Architecture Footnote -->
+<div class="mt-8 flex items-center gap-2 text-text-muted font-label-caps opacity-50">
+<span class="material-symbols-outlined text-sm">dns</span>
+<span>Distributed Ledger Sync Active</span>
+</div>
+</main>
+<footer class="fixed bottom-0 w-full py-8 px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-gutter border-t border-outline-variant bg-surface-dim z-20">
+<div class="text-label-caps font-label-caps text-on-surface">© 2024 ShopScale Fabric. All rights reserved.</div>
+<div class="flex gap-8 font-body-sm text-body-sm">
+<a class="text-text-muted hover:text-on-surface transition-colors duration-200" href="#">Terms of Service</a>
+<a class="text-text-muted hover:text-on-surface transition-colors duration-200" href="#">Privacy Policy</a>
+<a class="text-text-muted hover:text-on-surface transition-colors duration-200" href="#">Contact Support</a>
+</div>
+</footer>
+<script>
+        const steps = [
+            { id: 0, text: "Allocating shard resources...", label: "Create Order" },
+            { id: 1, text: "Propagating event to message queue...", label: "Publish Event" },
+            { id: 2, text: "Acquiring inventory locks...", label: "Reserve Inventory" },
+            { id: 3, text: "Generating cryptographic confirmation...", label: "Send Confirmation" }
+        ];
+
+        let currentStep = 0;
+
+        function updateStep() {
+            if (currentStep >= steps.length) {
+                document.getElementById('status-text').innerText = "Order Successfully Processed";
+                document.getElementById('status-text').classList.replace('text-tertiary-fixed-dim', 'text-success');
+                return;
+            }
+
+            const stepData = steps[currentStep];
+            const el = document.getElementById(`step-${currentStep}`);
+            const statusEl = document.getElementById('status-text');
+
+            // Reset previous step styles slightly
+            if (currentStep > 0) {
+                const prevEl = document.getElementById(`step-${currentStep - 1}`);
+                prevEl.classList.replace('opacity-100', 'opacity-60');
+                prevEl.querySelector('div').classList.remove('glow-orange', 'border-primary');
+                prevEl.querySelector('span:first-child').classList.replace('text-primary', 'text-success');
+            }
+
+            // Update Current Step
+            el.classList.replace('opacity-40', 'opacity-100');
+            el.classList.replace('scale-90', 'scale-110');
+            el.querySelector('div').classList.add('glow-orange', 'border-primary', 'bg-primary-container/20');
+            el.querySelector('span:first-child').classList.replace('text-on-surface-variant', 'text-primary');
+            el.querySelector('span:last-child').classList.replace('text-on-surface-variant', 'text-primary');
+
+            // Show active path
+            if (currentStep > 0) {
+                const path = document.getElementById(`active-path-${currentStep}`);
+                if (path) path.classList.remove('hidden');
+            }
+
+            statusEl.innerText = stepData.text;
+
+            currentStep++;
+            
+            // Staggered execution simulation
+            const delay = 1500 + Math.random() * 2000;
+            setTimeout(updateStep, delay);
+        }
+
+        // Initialize simulation
+        window.addEventListener('load', () => {
+            setTimeout(updateStep, 1000);
+        });
+    </script>
+</body></html>

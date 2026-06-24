@@ -1,0 +1,14 @@
+server:
+  port: 8081
+spring:
+  data:
+    mongodb:
+      uri: ${PRODUCT_MONGO_URI:mongodb://mongo:27017/productdb}
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:kafka:9092}
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://eureka-server:8761/eureka}
+app:
+  timeout-ms: ${PRODUCT_TIMEOUT_MS:3000}
