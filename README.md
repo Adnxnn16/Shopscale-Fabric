@@ -87,6 +87,39 @@ graph TD
 
 ---
 
+## Screenshots
+
+<details>
+<summary>📸 Click to view all screenshots</summary>
+
+### 1. Landing Hero
+![Shopscale Fabric](screenshorts/1.Shopscale%20Fabric.png)
+
+### 2. Sign In
+![Sign In](screenshorts/2.Sing%20In.png)
+
+### 3. Home Page
+![Home Page](screenshorts/3.Home%20Page.png)
+
+### 4. Categories Navigation
+![Categories](screenshorts/4.Categories.png)
+
+### 5. New Arrivals
+![New Arrivals](screenshorts/5.New%20Arrivals.png)
+
+### 6. Shopping Cart
+![Your Cart](screenshorts/6.Your%20Cart.png)
+
+### 7. Place Order
+![Place Order](screenshorts/7.Place%20Order.png)
+
+### 8. Order Confirmation (with Inventory status check)
+![Order Confirm](screenshorts/8.Order%20Confirm.png)
+
+</details>
+
+---
+
 ## Services
 
 | Service | Port | Stack |
